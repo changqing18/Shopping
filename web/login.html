@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        label {  width: 75px;  }
+        form {  width: 360px;  }
+        #submit {  width: 250px;  }
+        a {  margin: auto 40px;  }
+    </style>
+    <link rel="stylesheet" href="css/user_comm.css">
+    <script src="js/user_comm.js"></script>
+</head>
+<body>
+<br>
+<br>
+<p>登录</p>
+<form class="login" method="post" action="/servlet/Login">
+
+    <fieldset id="personal_information">
+        <ol>
+            <li>
+                <label for="email">邮箱</label>
+                <input type="email" name="email" id="email" required/>
+            </li>
+
+            <li>
+                <label for="password">密码</label>
+                <input id="password" type="password" name="password" autocomplete="off" required/>
+            </li>
+            <li>
+                <a href="todo.html">忘记密码？</a>
+                <a href="register.html">还未注册？</a>
+            </li>
+            <li><input id="submit" value="登录" type="submit"></li>
+
+        </ol>
+    </fieldset>
+</form>
+<script>
+    PreUrl();
+    var arr=getRequest();
+    if(arr[0]!=""){
+        document.getElementById("email").value=arr[0];
+    }else{
+        var coo=document.cookie.split(";");
+        var user="";
+        for(var i=0;i<coo.length;i++){
+            if(coo[i].indexOf("user")==0){
+                user=coo[i].split("=")[1];
+                break;
+            }
+        }
+        user = user.replace("\"","").replace("\"","");
+        document.getElementById("email").value=user;
+    }
+</script>
+</body>
+</html>

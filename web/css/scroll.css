@@ -1,0 +1,81 @@
+@-moz-keyframes slide {
+    from, to { top: 0; }
+    12.5% { top: 0; }
+    25% { top: -450px; }
+    37.5% { top: -450px; }
+    50% { top: -900px; }
+    62.5% { top: -900px; }
+    75% { top: -1350px; }
+    87.5% { top: -1350px; }
+}
+@-webkit-keyframes slide {
+    from, to { top: 0; }
+    12.5% { top: 0; }
+    25% { top: -450px; }
+    37.5% { top: -450px; }
+    50% { top: -900px; }
+    62.5% { top: -900px; }
+    75% { top: -1350px; }
+    87.5% { top: -1350px; }
+}
+
+@-moz-keyframes index_1 {
+    from, 25%, to { background-color: rgba(0,0,0,.5); }
+    0% { background-color: rgba(255,0,0,.5); }
+}
+@-moz-keyframes index_2 {
+    from, 50%, to { background-color: rgba(0,0,0,.5); }
+    25% { background-color: rgba(255,0,0,.5); }
+}
+@-moz-keyframes index_3 {
+    from, 75%, to { background-color: rgba(0,0,0,.5); }
+    50% { background-color: rgba(255,0,0,.5); }
+}
+@-moz-keyframes index_4 {
+    from, 100%, to { background-color: rgba(0,0,0,.5); }
+    75% { background-color: rgba(255,0,0,.5); }
+}
+
+@-webkit-keyframes index_1 {
+    from, 25%, to { background-color: rgba(0,0,0,.5); }
+    0% { background-color: rgba(255,0,0,.5); }
+}
+@-webkit-keyframes index_2 {
+    from, 50%, to { background-color: rgba(0,0,0,.5); }
+    25% { background-color: rgba(255,0,0,.5); }
+}
+@-webkit-keyframes index_3 {
+    from, 75%, to { background-color: rgba(0,0,0,.5); }
+    50% { background-color: rgba(255,0,0,.5); }
+}
+@-webkit-keyframes index_4 {
+    from, 100%, to { background-color: rgba(0,0,0,.5); }
+    75% { background-color: rgba(255,0,0,.5); }
+}
+
+.box{width:1210px; height:450px; margin:1em auto; position:relative; overflow:hidden;}
+.list{margin:0; padding:0; position:absolute;}
+.list{
+    -moz-animation: slide 20s infinite;
+    -webkit-animation: slide 20s infinite;
+}
+
+.slide{vertical-align:bottom;}
+.index{position:absolute; right:1em; bottom:1em;}
+.index a{display:inline-block; width:20px; height:20px; line-height:20px; margin-left:.5em; border-radius:10px; background-color:rgba(0,0,0,.5); text-align:center; text-decoration:none!important; color:#fff;}
+.index_1{
+    -moz-animation: index_1 20s step-end infinite;
+    -webkit-animation: index_1 20s step-end infinite;
+}
+.index_2{
+    -moz-animation: index_2 20s step-end infinite;
+    -webkit-animation: index_2 20s step-end infinite;
+}
+.index_3{
+    -moz-animation: index_3 20s step-end infinite;
+    -webkit-animation: index_3 20s step-end infinite;
+}
+.index_4{
+    -moz-animation: index_4 20s step-end infinite;
+    -webkit-animation: index_4 20s step-end infinite;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册账号</title>
+    <style>
+        label{  width:120px;  }
+        form{  width:400px;  }
+        #submit{  width:280px;  }
+    </style>
+    <link rel="stylesheet" href="css/user_comm.css">
+    <script src="js/user_comm.js"></script>
+</head>
+<body>
+<br>
+<br>
+<p>注册账号</p>
+<form class="login" method="post" action="/servlet/Register">
+
+    <fieldset id="personal_information">
+        <ol>
+            <li>
+                <label for="name">昵称</label>
+                <input type="text" name="name" id="name" autofocus required>
+            </li>
+
+            <li>
+                <label for="email">邮箱</label>
+                <input type="email" name="email" id="email" required/>
+            </li>
+
+            <li>
+                <label for="password">密码</label>
+                <input id="password" type="password" name="password" value="" autocomplete="off"
+                       placeholder="8个字符及以上" required
+                       pattern="^\w{8,20}$"
+                       title="请输入8到20位字符，包含字母、数字以及下划线"/>
+            </li>
+            <li>
+                <label for="password_confirmation">确认密码</label>
+                <input id="password_confirmation" type="password"
+                       name="password_confirmation" value="" autocomplete="off"
+                       placeholder="请再次输入您的密码" required/>
+            </li>
+            <li><a href="login.html">已有账号？前往登录</a></li>
+            <li><input id="submit" value="注册" type="submit" onclick="return check()"></li>
+
+        </ol>
+    </fieldset>
+</form>
+<script>
+    PreUrl();
+    var arr=getRequest();
+    document.getElementById("email").value=arr[0];
+    document.getElementById("name").value=arr[1];
+    function check() {
+        var pass1 = document.getElementById("password").value;
+        var pass2 = document.getElementById("password_confirmation").value;
+        if (pass1 != pass2) {
+            alert("两次密码输入不一致！");
+            return false;
+        } else
+            return true;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+p{
+    font-family: "微软雅黑", "黑体", "Arial";
+    font-size:200%;
+    text-align: center;
+}
+ol{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+ol li{
+    clear:both;
+    margin:0;
+    padding:0;
+}
+label{
+    float:left;
+}
+input{
+    border:1px solid #333;
+    height:25px;
+    margin:2px 0;
+    font-size:100%;
+}
+input[required]:invalid,input[pattern]:invalid{
+    border-color:#a5340b;
+}
+input[required]:valid,input[pattern]:valid{
+    border-color:#0b9900;
+}
+input:focus{background-color: #ffe;}
+.simpleColorContainer,.simpleColorDisplay{
+    float:left;
+}
+form{
+    font-family: "微软雅黑", "黑体", "Arial";
+    font-size:120%;
+    margin:30px auto;
+}
+a{ font-size:14px;}
+#submit{
+    display:block;
+    margin:auto;
+    background-color: #0be500;
+    height:34px;
+    font-size: 25px;
+    font-family: "微软雅黑", "黑体", "Arial";
+}
+input,fieldset,legend{
+    border-radius:6px;
+}
+fieldset{
+    background-color: #ddd;
+}
