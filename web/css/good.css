@@ -10,7 +10,7 @@ li {
     display: inline;
 }
 #good > ul {
-    margin: auto;
+    margin: 20px auto;
     padding: 25px 0 30px;
     border: 1px solid #ddd;
     width: 1210px;
