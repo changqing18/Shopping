@@ -44,20 +44,26 @@
         <li><a href="user_center.jsp">个人中心</a></li>
     </ul>
 </section>
-<div class="box">
-    <ul class="list">
-        <li><a href="good.html?gid=1"><img class="slide" src="images/s1.jpg" height="450"/></a></li>
-        <li><a href="good.html?gid=2"><img class="slide" src="images/s2.jpg" height="450"/></a></li>
-        <li><a href="good.html?gid=3"><img class="slide" src="images/s3.jpg" height="450"/></a></li>
-        <li><a href="good.html?gid=4"><img class="slide" src="images/s4.jpg" height="450"/></a></li>
-    </ul>
-    <div class="index">
-        <a href="javascript:" class="index_1">1</a>
-        <a href="javascript:" class="index_2">2</a>
-        <a href="javascript:" class="index_3">3</a>
-        <a href="javascript:" class="index_4">4</a>
+<div class="lyc-container">
+    <div class="lyc-out">
+        <ul class="lyc-inner">
+            <li><img src="images/s1.jpg" alt=""></li>
+            <li><img src="images/s2.jpg" alt=""></li>
+            <li><img src="images/s3.jpg" alt=""></li>
+            <li><img src="images/s4.jpg" alt=""></li>
+            <li><img src="images/s1.jpg" alt=""></li>
+        </ul>
     </div>
+    <ul class="lyc-imgs_indexs">
+        <li class="lyc-current">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <p class="lyc-left"></p>
+    <p class="lyc-right"></p>
 </div>
+<script src="js/scroll.js"></script>
 <section id="good">
     <%
         String sql = "SELECT gid,gname,price FROM good LIMIT 0,5";
