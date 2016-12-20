@@ -43,7 +43,6 @@ public class Login extends HttpServlet {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("preurl")) {
                         preUrl=cookie.getValue();
-                        System.out.println("in servlet: "+preUrl);
                         cookie.setMaxAge(0);
                         cookie.setPath("/");
                         response.addCookie(cookie);

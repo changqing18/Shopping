@@ -78,7 +78,7 @@
         <%
             for (int i = 0; i < 5; i++) {
                 resultSet.next();
-                String gid = resultSet.getString(1);
+                long gid = resultSet.getLong(1);
         %>
         <li>
             <div class="dimage"><a href="good.html?gid=<%=gid%>">
