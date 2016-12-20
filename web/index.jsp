@@ -21,19 +21,20 @@
 </head>
 <body>
 <header>
-<%
-    session = request.getSession();
-    String Email = (String) session.getAttribute("Email");
-    if (Email == null) {
-%>
-<a href="login.html">请登录</a>&nbsp;&nbsp;<a href="register.html">请注册</a>
-<%
-} else {
-%>
-欢迎您<a href="user_center.jsp"><%=Email%></a>
-<%
-    }
-%>
+    <%
+        session = request.getSession();
+        String Email = (String) session.getAttribute("Email");
+        if (Email == null) {
+    %>
+    <a href="login.html">请登录</a>&nbsp;&nbsp;<a href="register.html">请注册</a>
+    <%
+    } else {
+    %>
+    欢迎您<a href="user_center.jsp"><%=Email%>
+</a>
+    <%
+        }
+    %>
 </header>
 <section id="nav">
     <ul>
@@ -72,29 +73,28 @@
              PreparedStatement statement = conn.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()
         ) {
-            for (int i = 0; i < 2; i++) {
     %>
-    <ul id="ul<%=i+1%>">
+    <ul>
         <%
-            for (int j = 0; j < 5; j++) {
+            for (int i = 0; i < 5; i++) {
                 resultSet.next();
                 String gid = resultSet.getString(1);
         %>
-        <li id="li<%=i*5+j+1%>">
+        <li>
             <div class="dimage"><a href="good.html?gid=<%=gid%>">
                 <img class="gimage" src="images/<%=gid%>.jpg" alt="图片">
             </a></div>
-            <a class="gname" href="good.html?gid=<%=gid%>"><%=resultSet.getString(2)%></a>
-            <p class="price" id="goods<%=i*3+j+1%>">￥<%=resultSet.getFloat(3)%></p>
+            <a class="gname" href="good.html?gid=<%=gid%>"><%=resultSet.getString(2)%>
+            </a>
+            <p class="price">￥<%=resultSet.getFloat(3)%>
+            </p>
         </li>
         <%
             }
         %>
     </ul>
-<%
-            break;
-        }
-%>
+    <%
+    %>
 </section>
 <footer id="page_footer">
     <p>Copyrights &copy; 2016 AweseomeCo.</p>
@@ -108,7 +108,7 @@
     </nav>
 </footer>
 <%
-poolConn.returnConnection(conn);
+        poolConn.returnConnection(conn);
     } catch (SQLException e) {
         e.printStackTrace();
     }
