@@ -10,11 +10,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>所有商品</title>
     <link rel="stylesheet" href="css/good.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/page.css">
 </head>
 <body>
 <header>
@@ -64,6 +67,7 @@
             }
             int minNum = (curNo - 1) * pageSize;
             int curNum = TotalNum - minNum;
+            int TotalPageNo = TotalNum / pageSize + (TotalNum % pageSize > 0 ? 1 : 0);
             int x = 0;
             statement1.setInt(1, minNum);
             statement1.setInt(2, pageSize);
@@ -78,10 +82,10 @@
                 long gid = resultSet1.getLong(1);
         %>
         <li>
-            <div class="dimage"><a href="good.html?gid=<%=gid%>">
+            <div class="dimage"><a href="good.jsp?gid=<%=gid%>">
                 <img class="gimage" src="images/<%=gid%>.jpg" alt="图片">
             </a></div>
-            <a class="gname" href="good.html?gid=<%=gid%>"><%=resultSet1.getString(2)%>
+            <a class="gname" href="good.jsp?gid=<%=gid%>"><%=resultSet1.getString(2)%>
             </a>
             <p class="price">￥<%=resultSet1.getFloat(3)%>
             </p>
@@ -94,17 +98,18 @@
             }
         %>
     </ul>
-    <%  }  %>
-    <div id="pageNo">
-        <%
-            int TotalPageNo = TotalNum / pageSize + (TotalNum % pageSize > 0 ? 1 : 0);
-            for (int i = 1; i <= TotalPageNo; i++) {
-        %>
-        <a href="allgoods.jsp?pageNo=<%=i%>"><%=i%>
-        </a>&nbsp;
-        <%  }  %>
-    </div>
+    <%
+        }
+    %>
+
 </section>
+
+<span id="curNo" hidden><%=curNo%></span>
+<span id="TotalPageNo" hidden><%=TotalPageNo%></span>
+<div id="page">
+</div>
+<script src="js/page.js"></script>
+
 <footer id="page_footer">
     <p>Copyrights &copy; 2016 AweseomeCo.</p>
     <nav>

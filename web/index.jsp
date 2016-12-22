@@ -81,10 +81,10 @@
                 long gid = resultSet.getLong(1);
         %>
         <li>
-            <div class="dimage"><a href="good.html?gid=<%=gid%>">
+            <div class="dimage"><a href="good.jsp?gid=<%=gid%>">
                 <img class="gimage" src="images/<%=gid%>.jpg" alt="图片">
             </a></div>
-            <a class="gname" href="good.html?gid=<%=gid%>"><%=resultSet.getString(2)%>
+            <a class="gname" href="good.jsp?gid=<%=gid%>"><%=resultSet.getString(2)%>
             </a>
             <p class="price">￥<%=resultSet.getFloat(3)%>
             </p>

@@ -1,0 +1,21 @@
+#page{
+    width: 1210px;
+    height: 30px;
+    background-color: #2f2f2f;
+    margin: auto;
+}
+
+#page>a{
+    margin: 4px auto;
+    padding: 0 10px;
+    height:22px;
+    line-height:22px;
+    font-size: 22px;
+    text-decoration: none;
+    color: #ccc;
+    display: block;
+    float: left;
+}
+#page>a:hover{
+    color: #fff;
+}
