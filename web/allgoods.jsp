@@ -103,13 +103,28 @@
     %>
 
 </section>
-
-<span id="curNo" hidden><%=curNo%></span>
-<span id="TotalPageNo" hidden><%=TotalPageNo%></span>
 <div id="page">
+    <%
+        String str = "<a href=\"../allgoods.jsp?curNoNo=" + curNo + "\">" + curNo + "</a>";
+        for (int i = 0; i <= 3; i++) {
+            if (curNo - i > 1)
+                str = "<a href=\"../allgoods.jsp\">" + (curNo - i) + "</a> " + str;
+            if (curNo + i < TotalPageNo)
+                str = str + " <a href=\"../allgoods.jsp?curNoNo=" + (curNo + i) + "\">" + (curNo + i) + "</a>";
+            if (curNo - 4 > 1)
+                str = "<a href=\"#\">... </a>" + str;
+            if (curNo > 1)
+                str = "<a href=\"../allgoods.jsp?curNoNo=" + (curNo - 1) + "\">" + "上一页</a> " +
+                        "<a href=\"../allgoods.jsp?curNoNo=1\">1</a>" + " " + str;
+            if (curNo + 4 < TotalPageNo)
+                str = str + "<a href=\"#\">... </a>";
+            if (curNo < TotalPageNo)
+                str = str + " " + "<a href=\"allgoods.jsp?curNoNo=" + TotalPageNo + "\">" + TotalPageNo + "</a>" + " " +
+                        "<a href=\"../allgoods.jsp?curNoNo=" + (curNo + 1) + "\">" + "下一页</a>";
+        }
+        out.print(str);
+    %>
 </div>
-<script src="js/page.js"></script>
-
 <footer id="page_footer">
     <p>Copyrights &copy; 2016 AweseomeCo.</p>
     <nav>
