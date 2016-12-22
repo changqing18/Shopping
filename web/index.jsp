@@ -84,10 +84,8 @@
             <div class="dimage"><a href="good.jsp?gid=<%=gid%>">
                 <img class="gimage" src="images/<%=gid%>.jpg" alt="图片">
             </a></div>
-            <a class="gname" href="good.jsp?gid=<%=gid%>"><%=resultSet.getString(2)%>
-            </a>
-            <p class="price">￥<%=resultSet.getFloat(3)%>
-            </p>
+            <a class="gname" href="good.jsp?gid=<%=gid%>"><%=resultSet.getString(2)%></a>
+            <p class="price">￥<%=resultSet.getFloat(3)%></p>
         </li>
         <%
             }
@@ -95,7 +93,7 @@
     </ul>
 </section>
 <footer id="page_footer">
-    <p>Copyrights &copy; 2016 AweseomeCo.</p>
+    <p>Copyrights &copy; 2016 ChangQingCo.</p>
     <nav>
         <ul>
             <li><a href="#">Home</a></li>

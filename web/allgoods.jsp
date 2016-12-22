@@ -129,7 +129,7 @@
     %>
 </div>
 <footer id="page_footer">
-    <p>Copyrights &copy; 2016 AweseomeCo.</p>
+    <p>Copyrights &copy; 2016 ChangQingCo.</p>
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
