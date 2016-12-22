@@ -105,22 +105,25 @@
 </section>
 <div id="page">
     <%
-        String str = "<a href=\"../allgoods.jsp?curNoNo=" + curNo + "\">" + curNo + "</a>";
+        String ah = "<a href=\"../allgoods.jsp?curNoNo=";
+        String ahb = "\">";
+        String ab = "</a>";
+        String str = ah + curNo + ahb + curNo + ab;
         for (int i = 0; i <= 3; i++) {
             if (curNo - i > 1)
-                str = "<a href=\"../allgoods.jsp\">" + (curNo - i) + "</a> " + str;
+                str = ah + (curNo - i) + ahb + (curNo - i) + ab + str;
             if (curNo + i < TotalPageNo)
-                str = str + " <a href=\"../allgoods.jsp?curNoNo=" + (curNo + i) + "\">" + (curNo + i) + "</a>";
+                str = str + ah + (curNo + i) + ahb + (curNo + i) + ab;
             if (curNo - 4 > 1)
                 str = "<a href=\"#\">... </a>" + str;
             if (curNo > 1)
-                str = "<a href=\"../allgoods.jsp?curNoNo=" + (curNo - 1) + "\">" + "上一页</a> " +
-                        "<a href=\"../allgoods.jsp?curNoNo=1\">1</a>" + " " + str;
+                str = ah + (curNo - 1) + ahb + "上一页</a> " +
+                        ah + 1 + ahb + 1 + ab + " " + str;
             if (curNo + 4 < TotalPageNo)
                 str = str + "<a href=\"#\">... </a>";
             if (curNo < TotalPageNo)
-                str = str + " " + "<a href=\"allgoods.jsp?curNoNo=" + TotalPageNo + "\">" + TotalPageNo + "</a>" + " " +
-                        "<a href=\"../allgoods.jsp?curNoNo=" + (curNo + 1) + "\">" + "下一页</a>";
+                str = str + " " + ah + TotalPageNo + "\">" + TotalPageNo + ab + " " +
+                        ah + (curNo + 1) + ahb + "下一页" + ab;
         }
         out.print(str);
     %>
