@@ -26,7 +26,7 @@ function getRequest() {
             Email = decodeURIComponent(str[0].split("=")[1]);
             name = decodeURIComponent(str[1].split("=")[1]);
             error = str[2].split("=")[1];
-        }catch(ignore){ }
+        }catch(ignored){ }
     }
     return [Email,name,error];
 }

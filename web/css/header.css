@@ -1,3 +1,4 @@
+ul,li{  list-style: none; }
 header{
     color: #2f2f2f;
     padding-left: 61px;
@@ -15,7 +16,7 @@ header>a:hover{
     width: 1210px;
     height: 54px;
     background: #393838;
-    margin: auto;
+    margin: auto 61px;
 }
 #nav>ul>li{
     vertical-align: middle;

@@ -1,0 +1,49 @@
+#nav > ul > li {
+    display: inline;
+}
+#good > ul {
+    margin: 20px auto;
+    padding: 25px 0 30px;
+    border: 1px solid #ddd;
+    width: 1210px;
+    height: 285px;
+}
+#good > ul > li {
+    width: 241px;
+    height: 100%;
+    margin: auto;
+    float: left;
+}
+#good>ul>li:nth-child(even){
+    border-left:1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+.dimage {
+    width: 100%;
+    height: 206px;
+    line-height: 206px;
+    text-align: center;
+}
+.gimage {
+    vertical-align: middle;
+    width: 180px;
+    height: 180px;
+}
+.gname {
+    margin: 8px 15px 17px 17px;
+    font-family: "Microsoft Yahei";
+    width: 200px;
+    text-decoration: none;
+    color: #666;
+    font-size: 12px;
+    display: block;
+}
+.gname:hover {
+    color: #C81623;
+}
+.price {
+    font-size: 18px;
+    line-height: 18px;
+    margin-left: 17px;
+    color: #c61822;
+}

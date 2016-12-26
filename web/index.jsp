@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <title>快乐购物</title>
-    <link rel="stylesheet" href="css/good.css">
+    <link rel="stylesheet" href="css/good_index.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/scroll.css">
 </head>
@@ -39,7 +39,7 @@
 <section id="nav">
     <ul>
         <li><a href="index.jsp">首页</a></li>
-        <li><a href="allgoods.jsp">所有商品</a></li>
+        <li><a href="all_goods.jsp">所有商品</a></li>
         <li><a href="#">购物车</a></li>
         <li><a href="my_order.jsp">我的订单</a></li>
         <li><a href="user_center.jsp">个人中心</a></li>

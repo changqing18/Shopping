@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/good.css">
+</head>
+<body>
+<header>
+    <a href="login.html">请登录</a>&nbsp;&nbsp;<a href="register.html">请注册</a>
+</header>
+<section id="nav">
+    <ul>
+        <li><a href="index.jsp">首页</a></li>
+        <li><a href="all_goods.jsp">所有商品</a></li>
+        <li><a href="#">购物车</a></li>
+        <li><a href="my_order.jsp">我的订单</a></li>
+        <li><a href="user_center.jsp">个人中心</a></li>
+    </ul>
+</section>
+<div id="good">
+    <div id="image">
+        <img src="images/1482219511691.jpg" height="220" width="220"/>
+    </div>
+    <div id="form">
+        <p id="gname">中兴(ZTE) A2 Plus 4GB+32GB高配 流光金 全网通4G双卡双待</p>
+        <p id="price">￥949.00</p>
+        <form method="post" action="/servlet/Ad_cart">
+            <ul>
+                <li>选择版本
+                    <label for="type1">默认</label>
+                    <input id="type1" name="type" type="radio" value="0" checked>
+                </li>
+                <li>选择颜色
+                    <label for="color1">白色</label>
+                    <input type="radio" id="color1" name="color" value="white" checked>
+                    <label for="color2">黑色</label>
+                    <input type="radio" id="color2" name="color" value="black">
+                </li>
+                <li>套餐类型
+                    <label for="spec1">裸机</label>
+                    <input type="radio" id="spec1" name="spec" value="1" checked>
+                </li>
+                <li>储存容量
+                    <label for="cap1">64G</label>
+                    <input type="radio" id="cap1" name="cap" value="64" checked>
+                </li>
+                <li>数量
+                    <label for="number"></label>
+                    <input type="number" id="number" name="number" min="1" max="200">&nbsp;&nbsp;库存200件
+                </li>
+                <li>
+                    <input type="submit" value="加入购物车" id="submit">
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+</body>
+</html>
