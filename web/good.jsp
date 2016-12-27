@@ -36,7 +36,7 @@
     <ul>
         <li><a href="index.jsp">首页</a></li>
         <li><a href="all_goods.jsp">所有商品</a></li>
-        <li><a href="#">购物车</a></li>
+        <li><a href="my_cart.jsp">购物车</a></li>
         <li><a href="my_order.jsp">我的订单</a></li>
         <li><a href="user_center.jsp">个人中心</a></li>
     </ul>

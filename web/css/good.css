@@ -1,4 +1,7 @@
 #good{  margin-top: 30px;}
+.radio{
+    list-style: none;
+}
 #image {
     width: 221px;
     height: 221px;

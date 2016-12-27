@@ -40,8 +40,8 @@
     <ul>
         <li><a href="index.jsp">首页</a></li>
         <li><a href="all_goods.jsp">所有商品</a></li>
-        <li><a href="#">购物车</a></li>
-        <li><a href="#">我的订单</a></li>
+        <li><a href="my_cart.jsp">购物车</a></li>
+        <li><a href="my_order.jsp">我的订单</a></li>
         <li><a href="user_center.jsp">个人中心</a></li>
     </ul>
 </section>
@@ -105,26 +105,26 @@
 </section>
 <div id="page">
     <%
-        String ah = "<a href=\"all_goods.jsp?curNoNo=";
-        String ahb = "\">";
-        String ab = "</a>";
+        final String ah = "<a href=\"all_goods.jsp?curNoNo=";
+        final String ahb = "\">";
+        final String ab = "</a>";
         String str = ah + curNo + ahb + curNo + ab;
-        for (int i = 0; i <= 3; i++) {
+        for (int i = 1; i <= 3; i++) {
             if (curNo - i > 1)
-                str = ah + (curNo - i) + ahb + (curNo - i) + ab + str;
+                str = ah + (curNo - i) + ahb + (curNo - i) + ab + " " + str;
             if (curNo + i < TotalPageNo)
-                str = str + ah + (curNo + i) + ahb + (curNo + i) + ab;
-            if (curNo - 4 > 1)
-                str = "<a href=\"#\">... </a>" + str;
-            if (curNo > 1)
-                str = ah + (curNo - 1) + ahb + "上一页</a> " +
-                        ah + 1 + ahb + 1 + ab + " " + str;
-            if (curNo + 4 < TotalPageNo)
-                str = str + "<a href=\"#\">... </a>";
-            if (curNo < TotalPageNo)
-                str = str + " " + ah + TotalPageNo + "\">" + TotalPageNo + ab + " " +
-                        ah + (curNo + 1) + ahb + "下一页" + ab;
+                str = str + " " + ah + (curNo + i) + ahb + (curNo + i) + ab;
         }
+        if (curNo - 4 > 1)
+            str = "<a href=\"#\">...</a>" + " " + str;
+        if (curNo > 1)
+            str = ah + (curNo - 1) + ahb + "上一页</a> " +
+                    ah + 1 + ahb + 1 + ab + " " + str;
+        if (curNo + 4 < TotalPageNo)
+            str = str + " " + "<a href=\"#\">...</a>";
+        if (curNo < TotalPageNo)
+            str = str + " " + ah + TotalPageNo + "\">" + TotalPageNo + ab + " " +
+                    ah + (curNo + 1) + ahb + "下一页" + ab;
         out.print(str);
     %>
 </div>
