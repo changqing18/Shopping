@@ -20,7 +20,7 @@ public class Delete extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String gid=request.getParameter("gid");
 
-        String sql="delete from gorder where gid=?";
+        String sql="delete from cart where gid=?";
         PoolConn poolConn=PoolConn.getPoolConn();
         try(Connection con=poolConn.getConnection();
             PreparedStatement statement=con.prepareStatement(sql)){

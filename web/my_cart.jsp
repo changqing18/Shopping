@@ -43,8 +43,8 @@
     </ul>
 </section>
 <%
-    String sql = "SELECT gorder.orderid,gorder.gid,gorder.number,good.gname FROM gorder good " +
-            "WHERE gorder.email=?&&gorder.gid=good.gid";
+    String sql = "SELECT cart.orderid,cart.gid,cart.number,good.gname FROM cart good " +
+            "WHERE cart.email=?&&cart.gid=good.gid";
     PoolConn poolConn = PoolConn.getPoolConn();
     try (Connection con = poolConn.getConnection();
          PreparedStatement statement = con.prepareStatement(sql)) {
