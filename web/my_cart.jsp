@@ -43,7 +43,7 @@
     </ul>
 </section>
 <%
-    String sql = "SELECT cart.orderid,cart.gid,cart.number,good.gname FROM cart good " +
+    String sql = "SELECT cart.orderid,cart.gid,cart.number,good.gname,good.number FROM cart good " +
             "WHERE cart.email=?&&cart.gid=good.gid";
     PoolConn poolConn = PoolConn.getPoolConn();
     try (Connection con = poolConn.getConnection();
@@ -78,7 +78,7 @@
     <td>
         <label for="number<%=i%>"></label>
         <input class="number" type="number" id="number<%=i%>" name="number<%=i%>"
-               min="1" max="<%=resultSet.getInt(3)%>" value="<%=resultSet.getInt(3)%>">
+               min="1" max="<%=resultSet.getInt(5)%>" value="<%=resultSet.getInt(3)%>">
     </td>
     <td>
         <a href="servlet/Delete?gid=<%=gid%>"></a>
@@ -96,5 +96,12 @@
     <%--TODO 删除--%>
     <a href="servlet/Delete">删除所选</a>
 </form>
+<script>
+    var num = document.getElementsByClassName("number");
+    for(var n=0;n<num.length;n++){
+        if(num[n].max<num[n].value)
+            console.log(num[n].max);
+    }
+</script>
 </body>
 </html>

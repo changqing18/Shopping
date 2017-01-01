@@ -26,6 +26,14 @@
                 alert("已成功加入购物车！\n"+"您可前往购物车查看！");
                 window.history.back();
                 break;
+            case 40:
+                alert("购买成功！\n"+"前往我的订单");
+                window.location.href="my_order.jsp";
+                break;
+            case 41:
+                alert("库存不足！请前往商品详情页查看库存数量");
+                window.history.back();
+                break;
             default:
                 alert("出现未知错误！");
                 window.history.back();
