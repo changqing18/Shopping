@@ -43,7 +43,7 @@
     </ul>
 </section>
 <%
-    String sql = "SELECT cart.orderid,cart.gid,cart.number,good.gname,good.number FROM cart good " +
+    String sql = "SELECT cart.orderid,cart.gid,cart.number,good.gname,good.number,good.price FROM cart good " +
             "WHERE cart.email=?&&cart.gid=good.gid";
     PoolConn poolConn = PoolConn.getPoolConn();
     try (Connection con = poolConn.getConnection();
@@ -53,55 +53,69 @@
 %>
 <form method="post" action="servlet/Buy">
     <table>
-    <%
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");
-        Date date;
-        long gid;
-        String time;
-        while (resultSet.next()) {
-            int i=0;
-            i++;
-            gid=resultSet.getLong(2);
-            date=new Date(gid);
-            time=formatter.format(date);
-    %>
-<tr>
-    <td><label for="checkbox<%=i%>"></label>
-        <input id="checkbox<%=i%>" type="checkbox" name="checkbox" value="<%=i%>">
-    </td>
-    <td>
-        <%=time%>
-    </td>
-    <td>
-        <a href="good.jsp?gid=<%=gid%>"><%=resultSet.getString(4)%></a>
-    </td>
-    <td>
-        <label for="number<%=i%>"></label>
-        <input class="number" type="number" id="number<%=i%>" name="number<%=i%>"
-               min="1" max="<%=resultSet.getInt(5)%>" value="<%=resultSet.getInt(3)%>">
-    </td>
-    <td>
-        <a href="servlet/Delete?gid=<%=gid%>"></a>
-    </td>
-</tr>
-    <%
-
+        <%
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");
+            Date date;
+            long gid;
+            String time;
+            while (resultSet.next()) {
+                int i = 0;
+                i++;
+                gid = resultSet.getLong(2);
+                date = new Date(gid);
+                time = formatter.format(date);
+        %>
+        <tr>
+            <td><label for="checkbox<%=i%>"></label>
+                <input id="checkbox<%=i%>" type="checkbox" name="checkbox" value="<%=i%>">
+            </td>
+            <td>
+                <%=time%>
+            </td>
+            <td>
+                <a href="good.jsp?gid=<%=gid%>"><%=resultSet.getString(4)%>
+                </a>
+            </td>
+            <td>
+                <label for="number<%=i%>"></label>
+                <input class="number" type="number" id="number<%=i%>" name="number<%=i%>"
+                       min="1" max="<%=resultSet.getInt(5)%>" value="<%=resultSet.getInt(3)%>" onchange="check()">
+            </td>
+            <td class="price" id="price<%=i%>">
+                单价：￥<%=resultSet.getString(6)%>
+            </td>
+            <td>
+                <a href="servlet/Delete?gid=<%=gid%>"></a>
+            </td>
+            <td>
+                <p class="stock" id="stock<%=i%>"></p>
+            </td>
+        </tr>
+        <%
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    %>
+        %>
     </table>
     <input type="submit" id="submit" value="立刻购买">
     <%--TODO 删除--%>
     <a href="servlet/Delete">删除所选</a>
 </form>
 <script>
-    var num = document.getElementsByClassName("number");
-    for(var n=0;n<num.length;n++){
-        if(num[n].max<num[n].value)
-            console.log(num[n].max);
+    function check() {
+        //TODO 提示库存不足，更新总价
+        var num = document.getElementsByClassName("number");
+        for (var n = 0; n < num.length; n++) {
+            var stock=document.getElementById("stock"+n);
+            if (num[n].max < num[n].value) {
+                stock.innerHTML="库存不足！当前仅剩"+num[n].max+"件";
+            }else{
+                stock.innerHTML="";
+            }
+        }
     }
+    check();
 </script>
 </body>
 </html>
