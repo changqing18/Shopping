@@ -15,23 +15,24 @@ import java.sql.SQLException;
 /**
  * Created by 28713 on 2016/12/27.
  */
-@WebServlet( value="/servlet/Delete", name = "Delete")
+@WebServlet(value = "/servlet/Delete", name = "Delete")
 public class Delete extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String gid=request.getParameter("gid");
+        String gid = request.getParameter("gid");
 
-        String sql="delete from cart where gid=?";
-        PoolConn poolConn=PoolConn.getPoolConn();
-        try(Connection con=poolConn.getConnection();
-            PreparedStatement statement=con.prepareStatement(sql)){
-            if(gid!=null){
-                statement.setString(1,gid);
-                //TODO error_code
-                response.sendRedirect("/user_error.html");
+        String sql = "DELETE FROM cart WHERE gid=?";
+        PoolConn poolConn = PoolConn.getPoolConn();
+        try (Connection con = poolConn.getConnection();
+             PreparedStatement statement = con.prepareStatement(sql)) {
+            if (gid != null) {
+                statement.setString(1, gid);
+                statement.executeUpdate();
+                response.sendRedirect("/user_error.html?Email=email&name=name&&error=50");
+            } else {
+                response.sendRedirect("/user_error.html?Email=email&name=name&&error=52");
             }
-
-        }catch (SQLException e){
-               e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }

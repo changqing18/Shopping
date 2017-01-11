@@ -22,13 +22,10 @@
         session = request.getSession();
         String Email = (String) session.getAttribute("Email");
         if (Email == null) {
-    %>
-    <a href="login.html">请登录</a>&nbsp;&nbsp;<a href="register.html">请注册</a>
-    <%
+        response.sendRedirect("user_error?Email=eamil&name=name&error=21");
     } else {
     %>
-    欢迎您<a href="user_center.jsp"><%=Email%>
-</a>
+    欢迎您<a href="user_center.jsp"><%=Email%></a>
     <%
         }
     %>
@@ -43,7 +40,7 @@
     </ul>
 </section>
 <%
-    String sql = "SELECT cart.orderid,cart.gid,cart.number,good.gname,good.number,good.price FROM cart good " +
+    String sql = "SELECT cart.orderid,cart.gid,cart.number,good.gname,good.number,good.price FROM cart,good " +
             "WHERE cart.email=?&&cart.gid=good.gid";
     PoolConn poolConn = PoolConn.getPoolConn();
     try (Connection con = poolConn.getConnection();
@@ -58,9 +55,8 @@
             Date date;
             long gid;
             String time;
+            int i = 0;
             while (resultSet.next()) {
-                int i = 0;
-                i++;
                 gid = resultSet.getLong(2);
                 date = new Date(gid);
                 time = formatter.format(date);
@@ -79,7 +75,8 @@
             <td>
                 <label for="number<%=i%>"></label>
                 <input class="number" type="number" id="number<%=i%>" name="number<%=i%>"
-                       min="1" max="<%=resultSet.getInt(5)%>" value="<%=resultSet.getInt(3)%>" onchange="check()">
+                       min="1" max="<%=resultSet.getInt(5)%>" value="<%=resultSet.getInt(3)%>"
+                       onchange="numChange(<%=i%>)">
             </td>
             <td class="price" id="price<%=i%>">
                 单价：￥<%=resultSet.getString(6)%>
@@ -92,6 +89,7 @@
             </td>
         </tr>
         <%
+                    i++;
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -101,21 +99,43 @@
     <input type="submit" id="submit" value="立刻购买">
     <%--TODO 删除--%>
     <a href="servlet/Delete">删除所选</a>
+    <p id="totalPrice"></p>
 </form>
 <script>
+    //加载页面时执行一次，显示库存总价信息
     function check() {
-        //TODO 提示库存不足，更新总价
         var num = document.getElementsByClassName("number");
+        var pri = document.getElementsByClassName("price");
+        var totalPrice = document.getElementById("totalPrice");
+        var numAtBegin = [];
+        var total = 0;
         for (var n = 0; n < num.length; n++) {
-            var stock=document.getElementById("stock"+n);
-            if (num[n].max < num[n].value) {
-                stock.innerHTML="库存不足！当前仅剩"+num[n].max+"件";
-            }else{
-                stock.innerHTML="";
+            numAtBegin[n] = (num[n].value);
+            var stock = document.getElementById("stock" + n);
+            if (parseInt(num[n].max) < parseInt([n].value)) {
+                stock.innerHTML = "库存不足！当前仅剩" + num[n].max + "件";
+            } else {
+                stock.innerHTML = "";
             }
+            total = parseInt(num[n].value) * parseInt(pri[n].innerHTML.split("￥")[1]) + total;
+            console.log("value:", parseInt(num[n].value));
+            console.log("price:", parseInt(pri[n].innerHTML.split("￥")[1]));
         }
+        totalPrice.innerHTML = "总价：￥" + total;
+        return numAtBegin;
     }
-    check();
+    var numAtBegin = check();
+
+    //数量改变，修改总价
+    function numChange(nu) {
+        var num = document.getElementById("number" + nu);
+        var totalPrice = document.getElementById("totalPrice");
+        var tPrice = parseInt(totalPrice.innerHTML.split("￥")[1]);
+        var pri = parseInt(document.getElementById("price" + nu).innerHTML.split("￥")[1]);
+        tPrice = tPrice + (parseInt(num.value) - numAtBegin[nu]) * pri;
+        numAtBegin[nu]=parseInt(num.value);
+        totalPrice.innerHTML = "总价：￥" + tPrice;
+    }
 </script>
 </body>
 </html>
