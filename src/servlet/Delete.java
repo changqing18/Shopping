@@ -27,13 +27,12 @@ public class Delete extends HttpServlet {
             if (gid != null) {
                 statement.setString(1, gid);
                 statement.executeUpdate();
-                response.sendRedirect("/user_error.html?Email=email&name=name&&error=50");
+                response.sendRedirect("/user_error.html?Email=&name=&&error=50");
             } else {
-                response.sendRedirect("/user_error.html?Email=email&name=name&&error=52");
+                response.sendRedirect("/user_error.html?Email=&name=&&error=52");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

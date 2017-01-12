@@ -22,32 +22,49 @@ public class Buy extends HttpServlet {
         HttpSession session1 = request.getSession();
         String Email = (String) session1.getAttribute("Email");
         if (Email == null)
-            response.sendRedirect("/user_error.html?Email=email&name=name&error=40");
+            response.sendRedirect("/user_error.html?Email=&name=&error=21");
 
-            String[] get = request.getParameterValues("checkbox");
-            String[][] Trans = new FunDelete().TranString(get);
-            int i = Trans.length;
-            Long[] orderID = new Long[i];
-            Long[] gid = new Long[i];
-            int[] number = new int[i];
-            for (; i >= 0; i--) {
-                orderID[i] = Long.parseLong(request.getParameter(Trans[i][0]));
-                gid[i] = Long.parseLong(request.getParameter(Trans[i][1]));
-                number[i] = Integer.parseInt(request.getParameter(Trans[i][2]));
+        String[] get = request.getParameterValues("checkbox");
+        String[][] Trans = new FunDelete().TranString(get);
+        int i = Trans.length;
+        Long[] orderID = new Long[i];
+        Long[] gid = new Long[i];
+        int[] number = new int[i];
+        for (; i >= 0; i--) {
+            orderID[i] = Long.parseLong(request.getParameter(Trans[i][0]));
+            gid[i] = Long.parseLong(request.getParameter(Trans[i][1]));
+            number[i] = Integer.parseInt(request.getParameter(Trans[i][2]));
+        }
+        int subtype = Integer.parseInt(request.getParameter("subtype"));
+        System.out.println(subtype);
+        PoolConn poolConn = PoolConn.getPoolConn();
+
+        if (subtype == 1) {
+            String sql = "UPDATE cart SET number=?WHERE orderid=?";
+            try (Connection con = poolConn.getConnection();
+                 PreparedStatement statement = con.prepareStatement(sql)) {
+                for (int j = 0; j < Trans.length; j++) {
+                    statement.setInt(1, number[j]);
+                    statement.setLong(2, orderID[i]);
+                    statement.addBatch();
+                }
+                statement.executeBatch();
+                response.sendRedirect("/user_error.html?Email=&name=&error=50");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-
-            String sql = "SELECT number FROM good WHERE gid in(";
-            for (int j = 0; j < gid.length - 1; j++)
+        } else {
+            String sql = "SELECT number FROM good WHERE gid IN(";
+            for (
+                    int j = 0;
+                    j < gid.length - 1; j++)
                 sql = sql + gid[j] + ",";
             sql = sql + gid[gid.length - 1] + ");";
             String sql1 = "UPDATE cart SET number=? WHERE orderid=?";
-
-            PoolConn poolConn = PoolConn.getPoolConn();
             try (Connection con = poolConn.getConnection();
                  Statement statement = con.createStatement();
                  PreparedStatement statement1 = con.prepareStatement(sql1);
                  CallableStatement cs = con.prepareCall("CALL buy(?,?,?,?)")) {
-
                 //先查询库存是否满足，好像效率有点低!
                 ResultSet rs = statement.executeQuery(sql);
                 int x = -1;
@@ -61,7 +78,7 @@ public class Buy extends HttpServlet {
                             statement1.addBatch();
                         }
                         statement1.executeBatch();
-                        response.sendRedirect("/user_error.html?Email=email&name=name&error=41");
+                        response.sendRedirect("/user_error.html?Email=&name=&error=41");
                     }
                 }
                 rs.close();
@@ -74,11 +91,12 @@ public class Buy extends HttpServlet {
                     cs.addBatch();
                 }
                 cs.executeBatch();
-                response.sendRedirect("/user_error.html?Email=email&name=name&error=40");
+                response.sendRedirect("/user_error.html?Email=&name=&error=40");
 
             } catch (SQLException e) {
-                response.sendRedirect("/user_error.html?Email=email&name=name&error=42");
+                response.sendRedirect("/user_error.html?Email=&name=&error=42");
                 e.printStackTrace();
             }
         }
     }
+}
