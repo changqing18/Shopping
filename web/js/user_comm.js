@@ -4,7 +4,7 @@
 function PreUrl() {
     var u = document.referrer;
     var date = new Date();
-    date.setMinutes(date.getMinutes() + 30);
+    date.setMinutes(date.getMinutes() + 15);
 
     if (u == "")
         u = "/index.jsp";

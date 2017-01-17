@@ -16,6 +16,7 @@
 <head>
     <title>我的购物车</title>
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
 <header>
@@ -23,7 +24,9 @@
         session = request.getSession();
         String Email = (String) session.getAttribute("Email");
         if (Email == null) {
-            response.sendRedirect("/user_error.html?Email=&name=&error=21");
+    %>
+    <script>window.location.href = "user_error.html?Email=&name=&error=21";</script>
+    <%
     } else {
     %>
     欢迎您<a href="user_center.jsp"><%=Email%>
@@ -39,7 +42,6 @@
     </ul>
 </section>
 <%
-    System.out.println("It works!");
     String sql = "SELECT cart.orderid,cart.gid,cart.number,good.gname,good.number,good.price FROM cart,good " +
             "WHERE cart.email=?&&cart.gid=good.gid";
     PoolConn poolConn = PoolConn.getPoolConn();
@@ -52,7 +54,7 @@
     <table>
         <tr>
             <td>
-                <label for="checkboxAll"></label>
+                <label for="checkboxAll">全选</label>
                 <input type="checkbox" name="checkboxAll" id="checkboxAll" onclick="selectAll()">
             </td>
             <td>加入时间</td>

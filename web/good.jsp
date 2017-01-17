@@ -53,7 +53,7 @@
 %>
 <div id="good">
     <div id="image">
-        <img src="images/1482219511691.jpg" height="220" width="220"/>
+        <img src="images/<%=gid%>.jpg" height="220" width="220"/>
     </div>
     <div id="form">
         <p id="gname"><%=resultSet.getString(1)%></p>

@@ -1,0 +1,26 @@
+form {
+    width: 1210px;
+    margin: auto 62px;
+}
+table{
+    width:1210px;
+    font-family: 等线;
+}
+tr {
+    background-color: #fcfcfc;
+}
+td>a {
+    text-decoration: none;
+    color: #666;
+    display: block;
+}
+td>a:hover {
+    color: #C81623;
+}
+.gname{
+    margin: 8px 15px 17px 17px;
+    width: 300px;
+}
+.stock{
+    color: red;
+}

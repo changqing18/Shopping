@@ -2,6 +2,7 @@ ul,li{  list-style: none; }
 header{
     color: #2f2f2f;
     padding-left: 61px;
+    font-family: 微软雅黑;
     font-size: 14px;
 }
 header>a{
@@ -36,8 +37,8 @@ header>a:hover{
     color: #fff;
 }
 #page_footer{
-    margin: auto;
-    width: 1211px;
+    width: 1210px;
+    margin: auto 61px;
     font-family: Arial;
     background:#393838;
     color:#ccc;

@@ -105,7 +105,7 @@
 </section>
 <div id="page">
     <%
-        final String ah = "<a href=\"all_goods.jsp?curNoNo=";
+        final String ah = "<a href=\"all_goods.jsp?pageNo=";
         final String ahb = "\">";
         final String ab = "</a>";
         String str = ah + curNo + ahb + curNo + ab;
